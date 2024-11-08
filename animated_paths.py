@@ -4,6 +4,7 @@ def animate_piggy_path(self, path):
 
         def move_step(step):
             if step >= len(path):
+                #self.piggy_animating = False  # Marcar que Piggy ha terminado de animar
                 return
 
             # Borrar la imagen de Piggy de la celda anterior
@@ -17,6 +18,10 @@ def animate_piggy_path(self, path):
             current_pos = path[step]
             self.grid_labels[current_pos[0]][current_pos[1]].config(image=self.piggy)
             self.grid_labels[current_pos[0]][current_pos[1]].image = self.piggy
+            
+            #Actualizar la posición de Piggy después de cada paso
+            self.piggy_pos = current_pos
+            
 
             # Llamar a la siguiente animación después de un breve retraso
             self.root.after(500, move_step, step + 1)
@@ -42,6 +47,8 @@ def animate_kermit_path(self, path):
         self.grid_labels[current_pos[0]][current_pos[1]].config(image=self.kermit)
         self.grid_labels[current_pos[0]][current_pos[1]].image = self.kermit
 
+        # Actualizar la posición de Kermit después de cada paso
+        self.kermit_pos = current_pos
         # Llamar a la siguiente animación después de un breve retraso
         self.root.after(500, move_step, step + 1)
 

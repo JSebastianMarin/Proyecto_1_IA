@@ -43,7 +43,7 @@ def add_images(self):
     self.grid_labels[self.elmo_pos[0]][self.elmo_pos[1]].config(image=self.elmo)  # Coloca a Elmo en su posición
     for wall_pos in self.wall_positions:  # Colocar todos los muros
         self.grid_labels[wall_pos[0]][wall_pos[1]].config(image=self.wall)
-    self.grid_labels[0][0].config(image=self.cookie)  # Coloca 'cookie' en la celda (0, 0)
+    self.grid_labels[1][1].config(image=self.cookie)  # Coloca 'cookie' en la celda (0, 0)
 
     # Colocar a Kermit en su posición inicial
     self.grid_labels[self.kermit_pos[0]][self.kermit_pos[1]].config(image=self.kermit)

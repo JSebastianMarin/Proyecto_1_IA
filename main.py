@@ -34,6 +34,10 @@ class GameEnvironmentGUI:
         # Variables para controlar la animación de Piggy
         self.piggy_animating = False
         self.piggy_animation_step = 0
+        
+        #Variables para controlar la posicion actual Kermit y Piggy
+        self.current_pos_kermit = self.kermit_pos.copy()
+        self.current_pos_piggy = self.piggy_pos.copy()
 
         # Insertar imágenes
         self.add_images()
@@ -49,7 +53,8 @@ class GameEnvironmentGUI:
 
     def check_piggy_movement(self):
         """Revisa constantemente la posición de Kermit y mueve a Piggy si es necesario."""
-        if self.kermit_pos == self.piggy_pos:
+        print(f"Piggy: _{self.piggy_pos}_ \nKermit: _{self.kermit_pos}_")
+        if self.kermit_pos == self.piggy_pos:   
             self.stop_piggy_animation()  # Detener la animación actual de Piggy
         self.bfs_move_piggy()
         self.root.after(1000, self.check_piggy_movement)  # Revisar cada segundo
@@ -77,7 +82,7 @@ class GameEnvironmentGUI:
             visited.add(tuple(current_pos))
 
             # Coordenadas de movimiento (arriba, abajo, izquierda, derecha)
-            moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+            moves = [(0, -1), (0, 1), (1, 0), (-1, 0)]
 
             for move in moves:
                 new_pos = [current_pos[0] + move[0], current_pos[1] + move[1]]
@@ -98,6 +103,8 @@ class GameEnvironmentGUI:
             current = parent.get(tuple(current))
         path.reverse()  # Invertir el camino para que vaya desde el inicio hasta el final
         return path
+    
+    
 
 #GUI Elements
 GameEnvironmentGUI.create_grid = create_grid
@@ -118,6 +125,7 @@ def main():
     root = tk.Tk()
     game = GameEnvironmentGUI(root)
     root.mainloop()
+    
 
 if __name__ == "__main__":
     main()
