@@ -80,6 +80,7 @@ def main():
     root = tk.Tk()
     game = GameEnvironmentGUI(root)
     root.mainloop()
+    
 
 if __name__ == "__main__":
     main()

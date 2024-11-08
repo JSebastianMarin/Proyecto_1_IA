@@ -44,6 +44,8 @@ def animate_kermit_path(self, path):
         self.grid_labels[current_pos[0]][current_pos[1]].config(image=self.kermit)
         self.grid_labels[current_pos[0]][current_pos[1]].image = self.kermit
 
+        # Actualizar la posición de Kermit después de cada paso
+        self.kermit_pos = current_pos
         # Llamar a la siguiente animación después de un breve retraso
         self.root.after(1000, move_step, step + 1)
 
