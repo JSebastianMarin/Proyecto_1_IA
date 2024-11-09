@@ -24,7 +24,10 @@ def astar_animate_piggy_path(self):
             return
 
         if tuple(self.current_kermit_pos) == self.piggy_pos:
+            self.found = True
+            print("Piggy has found Kermit!")
             return
+
 
         # Llamar a la siguiente animación después de un breve retraso
         self.root.after(1000, move_step)
@@ -58,6 +61,7 @@ def bfs_animate_piggy_path(self):
             return
 
         if tuple(self.current_kermit_pos) == self.piggy_pos:
+            self.found = True
             return
 
         # Llamar a la siguiente animación después de un breve retraso
@@ -70,6 +74,9 @@ def animate_kermit_path(self, path):
 
     """Anima el movimiento de Kermit a lo largo del camino encontrado."""
     def move_step(step):
+        
+        if self.found:
+            return
 
         if step >= len(path):
             return
@@ -92,10 +99,13 @@ def animate_kermit_path(self, path):
 
         if self.current_kermit_pos == self.elmo_pos:
             return
+        
+        if tuple(self.current_kermit_pos) == self.piggy_pos:
+            self.found = True
+            return
+
         print(self.current_kermit_pos, self.piggy_pos)
 
-        if tuple(self.current_kermit_pos) == self.piggy_pos:
-            return
         # Llamar a la siguiente animación después de un breve retraso
         self.root.after(1000, move_step, step + 1)
 

@@ -25,6 +25,9 @@ class GameEnvironmentGUI:
         # Crear la cuadrícula después de cargar las imágenes
         self.create_grid(4, 5)
 
+        # Crear varibale global para definir cuando kermit es encontrado por piggyc
+        self.found = False
+
         # Posición inicial de Kermit, Elmo y Piggy
         self.kermit_pos = [0, 4]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
