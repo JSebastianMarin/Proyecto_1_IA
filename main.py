@@ -26,34 +26,28 @@ class GameEnvironmentGUI:
         self.create_grid(4, 5)
 
         # Posición inicial de Kermit, Elmo y Piggy
-        self.kermit_pos = [3, 2]  # Posición inicial de Kermit
+        self.kermit_pos = [0, 4]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
         self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
-        self.piggy_pos = [0, 4]    # Posición inicial de Piggy
+        self.piggy_pos = [3, 2]    # Posición inicial de Piggy
 
         self.current_kermit_pos = self.kermit_pos
-        self.current_piggy_pos = self.piggy_pos
 
         # Insertar imágenes
         self.add_images()
-
-        # Puasar la aplicación después de que Kermit alcance a elmo
-        self.check_kermit_position()
 
         # Iniciar búsqueda limitada por profundidad para mover a Kermit
         self.depth_limit = 7  # Límite de profundidad
         self.dls_move_kermit()
 
-        # Iniciar la búsqueda BFS para mover a Piggy hacia Kermit
-        #self.bfs_animate_piggy_path()
-
         # Iniciar la búsqueda A* para mover a Piggy hacia Kermit
         self.astar_animate_piggy_path()
 
-    def check_kermit_position(self):
-        if self.current_kermit_pos == self.elmo_pos:  # Reemplaza [x, y] con la posición específica
-            print("Kermit ha alcanzado a elmo")
-            time.sleep(1000)  # Pausa la aplicación indefinidamente
+        # Iniciar la búsqueda BFS para mover a Piggy hacia Kermit
+        #self.bfs_animate_piggy_path()
+
+        
+
 
         
 
