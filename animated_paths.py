@@ -1,6 +1,9 @@
 def astar_animate_piggy_path(self):
     """Anima el movimiento de Piggy hacia Kermit recalculando el camino en cada paso."""
     def move_step():
+
+        self.check_kermit_position()
+
         # Buscar el nuevo camino hacia Kermit
         path = self.a_star(self.piggy_pos, self.current_kermit_pos)
         if not path:
@@ -24,10 +27,47 @@ def astar_animate_piggy_path(self):
 
     # Iniciar la animación
     move_step()
+    
+def bfs_animate_piggy_path(self):
+    """Anima el movimiento de Piggy hacia Kermit recalculando el camino en cada paso."""
+    def move_step():
+
+        # Buscar el nuevo camino hacia Kermit
+        path = self.check_piggy_movement(self.piggy_pos, self.current_kermit_pos)
+        if not path:
+            return  # Si no hay camino, detener la animación
+
+        # Si Piggy está en la posición inicial, no mover en el primer paso
+        if self.piggy_pos == [0, 4]:
+            next_pos = path[0]  # Mantener la posición inicial
+        else:
+            next_pos = path[1]  # Mover Piggy una casilla en el camino
+
+        self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].config(image=self.camino_piggy)
+        self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].image = self.camino_piggy
+
+        self.piggy_pos = next_pos
+        self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].config(image=self.piggy)
+        self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].image = self.piggy
+        
+        self.check_kermit_position()
+
+        # Llamar a la siguiente animación después de un breve retraso
+        self.root.after(1000, move_step)
+
+    # Iniciar la animación
+    move_step()
 
 def animate_kermit_path(self, path):
+
     """Anima el movimiento de Kermit a lo largo del camino encontrado."""
     def move_step(step):
+
+        self.check_kermit_position()
+
+        if self.paused:
+            return
+
         if step >= len(path):
             return
 
@@ -46,6 +86,7 @@ def animate_kermit_path(self, path):
 
         # Actualizar la posición de Kermit después de cada paso
         self.kermit_pos = current_pos
+
         # Llamar a la siguiente animación después de un breve retraso
         self.root.after(1000, move_step, step + 1)
 

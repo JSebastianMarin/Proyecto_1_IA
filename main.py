@@ -1,10 +1,11 @@
 import tkinter as tk
+import time
 
 from gui_elements import create_grid, load_images, resize_image, add_images
 from dls_kermit import dls_move_kermit, dls, try_move
-from bfs_piggy import check_piggy_movement, stop_piggy_animation, bfs_move_piggy, reconstruct_path
+from bfs_piggy import bfs_move_piggy, reconstruct_path_bfs, check_piggy_movement, stop_piggy_animation
 from aestrella_piggy import a_star, reconstruct_path
-from animated_paths import astar_animate_piggy_path, animate_kermit_path
+from animated_paths import astar_animate_piggy_path, animate_kermit_path, bfs_animate_piggy_path
 
 class GameEnvironmentGUI:
     def __init__(self, root):
@@ -32,23 +33,29 @@ class GameEnvironmentGUI:
 
         self.current_kermit_pos = self.kermit_pos
         self.current_piggy_pos = self.piggy_pos
-        # Variables para controlar la animación de Piggy
-        #self.piggy_animating = False
-        #self.piggy_animation_step = 0
 
         # Insertar imágenes
         self.add_images()
+
+        # Puasar la aplicación después de que Kermit alcance a elmo
+        self.check_kermit_position()
 
         # Iniciar búsqueda limitada por profundidad para mover a Kermit
         self.depth_limit = 7  # Límite de profundidad
         self.dls_move_kermit()
 
-        # Iniciar la verificación constante de la posición de Kermit para Piggy
-        #self.check_piggy_movement()
+        # Iniciar la búsqueda BFS para mover a Piggy hacia Kermit
+        #self.bfs_animate_piggy_path()
 
         # Iniciar la búsqueda A* para mover a Piggy hacia Kermit
-        self.animate_piggy_path()
+        self.astar_animate_piggy_path()
 
+    def check_kermit_position(self):
+        if self.current_kermit_pos == self.elmo_pos:  # Reemplaza [x, y] con la posición específica
+            print("Kermit ha alcanzado a elmo")
+            time.sleep(1000)  # Pausa la aplicación indefinidamente
+
+        
 
 #GUI Elements
 GameEnvironmentGUI.create_grid = create_grid
@@ -62,18 +69,20 @@ GameEnvironmentGUI.dls = dls
 GameEnvironmentGUI.try_move = try_move
 
 #Breadth First Search PIGGY
+GameEnvironmentGUI.bfs_move_piggy = bfs_move_piggy
+GameEnvironmentGUI.reconstruct_path_bfs = reconstruct_path_bfs
+
 GameEnvironmentGUI.check_piggy_movement = check_piggy_movement
 GameEnvironmentGUI.stop_piggy_animation = stop_piggy_animation
-GameEnvironmentGUI.bfs_move_piggy = bfs_move_piggy
-GameEnvironmentGUI.reconstruct_path = reconstruct_path
 
 # A* Search PIGGY
 GameEnvironmentGUI.a_star = a_star
 GameEnvironmentGUI.reconstruct_path = reconstruct_path
 
 #Animated Paths
-GameEnvironmentGUI.animate_piggy_path = astar_animate_piggy_path
+GameEnvironmentGUI.astar_animate_piggy_path = astar_animate_piggy_path
 GameEnvironmentGUI.animate_kermit_path = animate_kermit_path
+GameEnvironmentGUI.bfs_animate_piggy_path = bfs_animate_piggy_path
 
 
 def main():
@@ -81,6 +90,5 @@ def main():
     game = GameEnvironmentGUI(root)
     root.mainloop()
     
-
 if __name__ == "__main__":
     main()

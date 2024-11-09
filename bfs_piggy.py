@@ -1,13 +1,14 @@
 from collections import deque
 
-def check_piggy_movement(self):
+def check_piggy_movement(self, start_pos, end_pos):
     """Revisa constantemente la posición de Kermit y mueve a Piggy si es necesario."""
-    if self.kermit_pos == self.piggy_pos:
+    if start_pos == end_pos:
         self.stop_piggy_animation()  # Detener la animación actual de Piggy
     self.bfs_move_piggy()
     self.root.after(1000, self.check_piggy_movement)  # Revisar cada segundo
 
 def stop_piggy_animation(self):
+
     """Detiene la animación actual de Piggy."""
     self.piggy_animating = False
 
@@ -21,9 +22,8 @@ def bfs_move_piggy(self):
         current_pos = queue.popleft()
 
         # Si encontramos a Kermit, reconstruimos el camino y animamos
-        if current_pos == self.kermit_pos:
-            path = self.reconstruct_path(parent, current_pos)
-            self.animate_piggy_path(path)
+        if current_pos == self.current_kermit_pos:
+            path = self.reconstruct_path_bfs(parent, current_pos)
             return
 
         # Marcar esta posición como visitada
@@ -42,7 +42,7 @@ def bfs_move_piggy(self):
                     queue.append(new_pos)
                     parent[tuple(new_pos)] = current_pos
 
-def reconstruct_path(self, parent, end_pos):
+def reconstruct_path_bfs(self, parent, end_pos):
     """Reconstruye el camino desde el final hasta el inicio usando el diccionario parent."""
     path = []
     current = end_pos
