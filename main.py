@@ -10,12 +10,12 @@ class GameEnvironmentGUI:
         # Inicializar la ventana de la interfaz gráfica
         self.root = root
         self.root.title("Pacman Univalle")
-        self.root.geometry("800x600")
+        self.root.geometry("1200x900")
         self.root.configure(bg='White')  # Cambiar el fondo de la ventana a negro
 
         # Crear la matriz 4x5 y almacenar las etiquetas
         self.grid_labels = []
-        self.cell_size = 100  # Tamaño de la celda
+        self.cell_size = 200  # Tamaño de la celda
 
         # Cargar y redimensionar imágenes usando Pillow
         self.load_images()
@@ -26,23 +26,25 @@ class GameEnvironmentGUI:
         # Crear varibale global para definir cuando kermit es encontrado por piggyc
         self.found = False
 
+        self.power = 5
+
         # Posición inicial de Kermit, Elmo y Piggy
-        self.kermit_pos = [0, 4]  # Posición inicial de Kermit
+        self.kermit_pos = [3, 2]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
         self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
-        self.piggy_pos = [0, 0]    # Posición inicial de Piggy
+        self.piggy_pos = [0, 4]    # Posición inicial de Piggy
 
         self.current_kermit_pos = self.kermit_pos
 
         # Insertar imágenes
         self.add_images()
 
-        # Iniciar la búsqueda para mover a Piggy 
-        self.animate_piggy_path()
-
         # Iniciar búsqueda DLS para mover a Kermit
         self.depth_limit = 7  # Límite de profundidad
         self.dls_move_kermit()
+
+        # Iniciar la búsqueda para mover a Piggy 
+        self.animate_piggy_path()
         
 
 #GUI Elements

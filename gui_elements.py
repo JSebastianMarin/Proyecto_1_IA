@@ -32,6 +32,8 @@ def load_images(self):
     self.camino_kermit = self.resize_image("Imagenes/camino_kermit.png")  # Cargar la imagen del camino de Kermit
     self.camino_piggy = self.resize_image("Imagenes/camino_piggy.png")  # Cargar la imagen del camino de Piggy
     self.piggy_found_kermit = self.resize_image("Imagenes/piggyFkermit.webp")  # Cargar la imagen de Piggy encontrando a Kermit
+    self.kermit_found_elmo = self.resize_image("Imagenes/elmo_and_kermit.png")  # Cargar la imagen de Kermit encontrando a Elmo
+    self.piggy_rage = self.resize_image("Imagenes/piggy_rage.png")  # Cargar la imagen de Piggy enojado
 
 def resize_image(self, image_path):
     # Redimensionar la imagen manteniendo la relación de aspecto

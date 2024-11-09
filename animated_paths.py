@@ -1,20 +1,28 @@
+import random
+
 def animate_piggy_path(self):
     """Anima el movimiento de Piggy hacia Kermit recalculando el camino en cada paso."""
     def move_step():
 
-        if True:
+        print("Paso")
+
+        if self.power <= 4:
             # Buscar el nuevo camino hacia Kermit con A*
             path = self.a_star(self.piggy_pos, self.current_kermit_pos)
+            piggy_img = self.piggy_rage
             if not path:
                 return  # Si no hay camino, detener la animación
         else:
             # Buscar el nuevo camino hacia Kermit con BFS
             path = self.bfs_move_piggy(self.piggy_pos, self.current_kermit_pos)
+            self.power = random.randint(1, 10)
+            piggy_img = self.piggy
+            print("Powers: ", self.power)
             if not path:
                 return  # Si no hay camino, detener la animación
 
         # Si Piggy está en la posición inicial, no mover en el primer paso
-        if self.piggy_pos == [0, 0]:
+        if self.piggy_pos == [0, 4]:
             next_pos = path[0]  # Mantener la posición inicial
         else:
             next_pos = path[1]  # Mover Piggy una casilla en el camino
@@ -23,8 +31,8 @@ def animate_piggy_path(self):
         self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].image = self.camino_piggy
 
         self.piggy_pos = next_pos
-        self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].config(image=self.piggy)
-        self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].image = self.piggy
+        self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].config(image=piggy_img)
+        self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].image = piggy_img
 
         if self.current_kermit_pos == self.elmo_pos:
             return
@@ -70,16 +78,15 @@ def animate_kermit_path(self, path):
         self.kermit_pos = current_pos
 
         if self.current_kermit_pos == self.elmo_pos:
+            self.grid_labels[current_pos[0]][current_pos[1]].config(image=self.kermit_found_elmo)
+            self.grid_labels[current_pos[0]][current_pos[1]].image = self.kermit_found_elmo
             return
         
         if tuple(self.current_kermit_pos) == self.piggy_pos:
             self.grid_labels[current_pos[0]][current_pos[1]].config(image=self.piggy_found_kermit)
             self.grid_labels[current_pos[0]][current_pos[1]].image = self.piggy_found_kermit
             self.found = True
-            return
-        
-        print("Kermit: ", self.kermit_pos)
-        print("Piggy: ", self.piggy_pos)    
+            return   
 
         # Llamar a la siguiente animación después de un breve retraso
         self.root.after(1000, move_step, step + 1)
