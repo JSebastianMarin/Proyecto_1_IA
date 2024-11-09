@@ -1,12 +1,10 @@
 import tkinter as tk
-import time
 
 from gui_elements import create_grid, load_images, resize_image, add_images
 from dls_kermit import dls_move_kermit, dls, try_move
-from bfs_piggy import bfs_move_piggy, reconstruct_path_bfs, check_piggy_movement, stop_piggy_animation
-from aestrella_piggy import a_star, reconstruct_path
-from animated_paths import astar_animate_piggy_path, animate_kermit_path, bfs_animate_piggy_path
-
+from bfs_piggy import bfs_move_piggy, reconstruct_path_bfs
+from astar_piggy import a_star, reconstruct_path
+from animated_paths import animate_piggy_path, animate_kermit_path
 class GameEnvironmentGUI:
     def __init__(self, root):
         # Inicializar la ventana de la interfaz gráfica
@@ -39,23 +37,12 @@ class GameEnvironmentGUI:
         # Insertar imágenes
         self.add_images()
 
-        # Iniciar la búsqueda A* para mover a Piggy hacia Kermit
-        self.astar_animate_piggy_path()
+        # Iniciar la búsqueda para mover a Piggy 
+        self.animate_piggy_path()
 
-        # Iniciar la búsqueda BFS para mover a Piggy hacia Kermit
-        #self.bfs_animate_piggy_path()
-
-        # Iniciar búsqueda limitada por profundidad para mover a Kermit
+        # Iniciar búsqueda DLS para mover a Kermit
         self.depth_limit = 7  # Límite de profundidad
         self.dls_move_kermit()
-
-        
-
-        
-
-        
-
-
         
 
 #GUI Elements
@@ -73,18 +60,13 @@ GameEnvironmentGUI.try_move = try_move
 GameEnvironmentGUI.bfs_move_piggy = bfs_move_piggy
 GameEnvironmentGUI.reconstruct_path_bfs = reconstruct_path_bfs
 
-GameEnvironmentGUI.check_piggy_movement = check_piggy_movement
-GameEnvironmentGUI.stop_piggy_animation = stop_piggy_animation
-
 # A* Search PIGGY
 GameEnvironmentGUI.a_star = a_star
 GameEnvironmentGUI.reconstruct_path = reconstruct_path
 
 #Animated Paths
-GameEnvironmentGUI.astar_animate_piggy_path = astar_animate_piggy_path
+GameEnvironmentGUI.animate_piggy_path = animate_piggy_path
 GameEnvironmentGUI.animate_kermit_path = animate_kermit_path
-GameEnvironmentGUI.bfs_animate_piggy_path = bfs_animate_piggy_path
-
 
 def main():
     root = tk.Tk()
