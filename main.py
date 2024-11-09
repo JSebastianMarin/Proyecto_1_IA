@@ -2,10 +2,9 @@ import tkinter as tk
 
 from gui_elements import create_grid, load_images, resize_image, add_images
 from dls_kermit import dls_move_kermit, dls, try_move
-from bfs_piggy import check_piggy_movement, stop_piggy_animation, bfs_move_piggy, reconstruct_path
-from aestrella_piggy import a_star, reconstruct_path
-from animated_paths import astar_animate_piggy_path, animate_kermit_path
-
+from bfs_piggy import bfs_move_piggy, reconstruct_path_bfs
+from astar_piggy import a_star, reconstruct_path
+from animated_paths import animate_piggy_path, animate_kermit_path
 class GameEnvironmentGUI:
     def __init__(self, root):
         # Inicializar la ventana de la interfaz gráfica
@@ -24,31 +23,27 @@ class GameEnvironmentGUI:
         # Crear la cuadrícula después de cargar las imágenes
         self.create_grid(4, 5)
 
+        # Crear varibale global para definir cuando kermit es encontrado por piggyc
+        self.found = False
+
         # Posición inicial de Kermit, Elmo y Piggy
-        self.kermit_pos = [3, 2]  # Posición inicial de Kermit
+        self.kermit_pos = [0, 4]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
         self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
-        self.piggy_pos = [0, 4]    # Posición inicial de Piggy
+        self.piggy_pos = [0, 0]    # Posición inicial de Piggy
 
         self.current_kermit_pos = self.kermit_pos
-        self.current_piggy_pos = self.piggy_pos
-        # Variables para controlar la animación de Piggy
-        #self.piggy_animating = False
-        #self.piggy_animation_step = 0
 
         # Insertar imágenes
         self.add_images()
 
-        # Iniciar búsqueda limitada por profundidad para mover a Kermit
-        self.depth_limit = 7  # Límite de profundidad
-        self.dls_move_kermit()
-
-        # Iniciar la verificación constante de la posición de Kermit para Piggy
-        #self.check_piggy_movement()
-
-        # Iniciar la búsqueda A* para mover a Piggy hacia Kermit
+        # Iniciar la búsqueda para mover a Piggy 
         self.animate_piggy_path()
 
+        # Iniciar búsqueda DLS para mover a Kermit
+        self.depth_limit = 7  # Límite de profundidad
+        self.dls_move_kermit()
+        
 
 #GUI Elements
 GameEnvironmentGUI.create_grid = create_grid
@@ -62,24 +57,21 @@ GameEnvironmentGUI.dls = dls
 GameEnvironmentGUI.try_move = try_move
 
 #Breadth First Search PIGGY
-GameEnvironmentGUI.check_piggy_movement = check_piggy_movement
-GameEnvironmentGUI.stop_piggy_animation = stop_piggy_animation
 GameEnvironmentGUI.bfs_move_piggy = bfs_move_piggy
-GameEnvironmentGUI.reconstruct_path = reconstruct_path
+GameEnvironmentGUI.reconstruct_path_bfs = reconstruct_path_bfs
 
 # A* Search PIGGY
 GameEnvironmentGUI.a_star = a_star
 GameEnvironmentGUI.reconstruct_path = reconstruct_path
 
 #Animated Paths
-GameEnvironmentGUI.animate_piggy_path = astar_animate_piggy_path
+GameEnvironmentGUI.animate_piggy_path = animate_piggy_path
 GameEnvironmentGUI.animate_kermit_path = animate_kermit_path
-
 
 def main():
     root = tk.Tk()
     game = GameEnvironmentGUI(root)
     root.mainloop()
-
+    
 if __name__ == "__main__":
     main()

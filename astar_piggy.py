@@ -1,6 +1,7 @@
 import heapq
 
 def a_star(self, start, goal):
+
     """Realiza la búsqueda A* desde start hasta goal."""
     def heuristic(a, b):
         """Calcula la distancia Manhattan entre dos puntos a y b."""
@@ -21,7 +22,10 @@ def a_star(self, start, goal):
         if current == goal:
             return self.reconstruct_path(came_from, current)
 
-        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+        # Coordenadas de movimiento (arriba, abajo, izquierda, derecha)
+        moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        for dx, dy in moves:
             neighbor = (current[0] + dx, current[1] + dy)
             neighbor = tuple(neighbor)
             
