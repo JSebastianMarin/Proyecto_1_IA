@@ -32,22 +32,26 @@ class GameEnvironmentGUI:
         self.kermit_pos = [0, 4]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
         self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
-        self.piggy_pos = [3, 2]    # Posición inicial de Piggy
+        self.piggy_pos = [0, 0]    # Posición inicial de Piggy
 
         self.current_kermit_pos = self.kermit_pos
 
         # Insertar imágenes
         self.add_images()
 
-        # Iniciar búsqueda limitada por profundidad para mover a Kermit
-        self.depth_limit = 7  # Límite de profundidad
-        self.dls_move_kermit()
-
         # Iniciar la búsqueda A* para mover a Piggy hacia Kermit
         self.astar_animate_piggy_path()
 
         # Iniciar la búsqueda BFS para mover a Piggy hacia Kermit
         #self.bfs_animate_piggy_path()
+
+        # Iniciar búsqueda limitada por profundidad para mover a Kermit
+        self.depth_limit = 7  # Límite de profundidad
+        self.dls_move_kermit()
+
+        
+
+        
 
         
 

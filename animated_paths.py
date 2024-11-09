@@ -8,7 +8,7 @@ def astar_animate_piggy_path(self):
             return  # Si no hay camino, detener la animación
 
         # Si Piggy está en la posición inicial, no mover en el primer paso
-        if self.piggy_pos == [3, 2]:
+        if self.piggy_pos == [0, 0]:
             next_pos = path[0]  # Mantener la posición inicial
         else:
             next_pos = path[1]  # Mover Piggy una casilla en el camino
@@ -25,7 +25,8 @@ def astar_animate_piggy_path(self):
 
         if tuple(self.current_kermit_pos) == self.piggy_pos:
             self.found = True
-            print("Piggy has found Kermit!")
+            self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].config(image=self.piggy_found_kermit)
+            self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].image = self.piggy_found_kermit
             return
 
 
@@ -101,10 +102,10 @@ def animate_kermit_path(self, path):
             return
         
         if tuple(self.current_kermit_pos) == self.piggy_pos:
+            self.grid_labels[current_pos[0]][current_pos[1]].config(image=self.piggy_found_kermit)
+            self.grid_labels[current_pos[0]][current_pos[1]].image = self.piggy_found_kermit
             self.found = True
             return
-
-        print(self.current_kermit_pos, self.piggy_pos)
 
         # Llamar a la siguiente animación después de un breve retraso
         self.root.after(1000, move_step, step + 1)
