@@ -61,9 +61,14 @@ def animate_kermit_path(self, path):
         # Borrar la imagen de Kermit de la celda anterior
         if step > 0:
             prev_pos = path[step - 1]
-            # Cambiar la imagen de la celda anterior a la imagen de camino de Kermit
-            self.grid_labels[prev_pos[0]][prev_pos[1]].config(image=self.camino_kermit)
-            self.grid_labels[prev_pos[0]][prev_pos[1]].image = self.camino_kermit
+            
+            if prev_pos == self.cookie_pos:
+                self.grid_labels[prev_pos[0]][prev_pos[1]].config(image=self.cookie)
+                self.grid_labels[prev_pos[0]][prev_pos[1]].image = self.cookie
+            else:
+                # Cambiar la imagen de la celda anterior a la imagen de camino de Kermit
+                self.grid_labels[prev_pos[0]][prev_pos[1]].config(image=self.camino_kermit)
+                self.grid_labels[prev_pos[0]][prev_pos[1]].image = self.camino_kermit
 
         # Colocar la imagen de Kermit en la nueva celda
         current_pos = path[step]

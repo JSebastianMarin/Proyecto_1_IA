@@ -35,7 +35,7 @@ class GameEnvironmentGUI:
         self.elmo_pos = [2, 0]     # Posición de Elmo
         self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
         self.piggy_pos = [0, 4]    # Posición inicial de Piggy
-        self.cookie_pos = [1, 3]
+        self.cookie_pos = [1, 2]
 
         self.current_kermit_pos = self.kermit_pos
 
