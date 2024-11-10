@@ -28,10 +28,7 @@ def a_star(self, start, goal):
         if current == goal:
             return self.reconstruct_path(came_from, current)
 
-        # Coordenadas de movimiento (arriba, abajo, izquierda, derecha)
-        moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-
-        for dx, dy in moves:
+        for dx, dy in self.moves:
             neighbor = (current[0] + dx, current[1] + dy)
             neighbor = tuple(neighbor)
             

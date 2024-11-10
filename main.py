@@ -31,6 +31,9 @@ class GameEnvironmentGUI:
         self.power = 5
 
         self.eaten_cookie = False
+        
+        # Coordenadas de movimiento (arriba, abajo, izquierda, derecha)
+        self.moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
         # Posición inicial de Kermit, Elmo y Piggy
         self.kermit_pos = [3, 3]  # Posición inicial de Kermit
