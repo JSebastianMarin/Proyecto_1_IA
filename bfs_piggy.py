@@ -20,10 +20,7 @@ def bfs_move_piggy(self, start, goal):
         # Marcar esta posición como visitada
         visited.add(tuple(current_pos))
 
-        # Coordenadas de movimiento (arriba, abajo, izquierda, derecha)
-        moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-
-        for move in moves:
+        for move in self.moves:
             new_pos = [current_pos[0] + move[0], current_pos[1] + move[1]]
 
             # Comprobar si la nueva posición está dentro de los límites

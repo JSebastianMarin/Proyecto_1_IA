@@ -32,34 +32,22 @@ def dls(self, pos, visited, path, depth, limit):
     if pos == self.elmo_pos:
         return True
 
-    # Orden de movimientos (arriba, abajo, izquierda, derecha)
-    moves = [
-        (-1, 0),
-        (1, 0),
-        (0, -1),
-        (0, 1),
-    ]  # Normal: arriba, abajo, izquierda, derecha
-
     # Intentar movimientos en el nuevo orden
     for i in range(4):
         if i == 0:  # Intentar hacia arriba primero
-            new_pos = [pos[0] + moves[0][0], pos[1] + moves[0][1]]
-            
+            new_pos = [pos[0] + self.moves[0][0], pos[1] + self.moves[0][1]]
             if self.try_move(new_pos, visited, path, depth, limit):
                 return True
         elif i == 1:  # Intentar hacia abajo
-            new_pos = [pos[0] + moves[1][0], pos[1] + moves[1][1]]
-            
+            new_pos = [pos[0] + self.moves[1][0], pos[1] + self.moves[1][1]]
             if self.try_move(new_pos, visited, path, depth, limit):
                 return True
         elif i == 2:  # Intentar hacia la izquierda
-            new_pos = [pos[0] + moves[2][0], pos[1] + moves[2][1]]
-            
+            new_pos = [pos[0] + self.moves[2][0], pos[1] + self.moves[2][1]]
             if self.try_move(new_pos, visited, path, depth, limit):
                 return True
         else:  # Intentar el siguiente movimiento en el orden normal
-            new_pos = [pos[0] + moves[3][0], pos[1] + moves[3][1]]
-            
+            new_pos = [pos[0] + self.moves[3][0], pos[1] + self.moves[3][1]]
             if self.try_move(new_pos, visited, path, depth, limit):
                 return True
 
