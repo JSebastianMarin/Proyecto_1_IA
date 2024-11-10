@@ -21,7 +21,6 @@ def a_star(self, start, goal):
 
     if self.eaten_cookie:
         self.step_price = 0.5
-    print(self.step_price)
 
     while open_set:
         _, current = heapq.heappop(open_set)

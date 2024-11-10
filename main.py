@@ -1,10 +1,12 @@
 import tkinter as tk
+from tkinter import messagebox
 
 from gui_elements import create_grid, load_images, resize_image, add_images
 from dls_kermit import dls_move_kermit, dls, try_move
 from bfs_piggy import bfs_move_piggy, reconstruct_path_bfs
 from astar_piggy import a_star, reconstruct_path
 from animated_paths import animate_piggy_path, animate_kermit_path
+from utils import show_alert
 class GameEnvironmentGUI:
     def __init__(self, root):
         # Inicializar la ventana de la interfaz gráfica
@@ -31,7 +33,7 @@ class GameEnvironmentGUI:
         self.eaten_cookie = False
 
         # Posición inicial de Kermit, Elmo y Piggy
-        self.kermit_pos = [3, 2]  # Posición inicial de Kermit
+        self.kermit_pos = [3, 3]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
         self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
         self.piggy_pos = [0, 4]    # Posición inicial de Piggy
@@ -49,7 +51,9 @@ class GameEnvironmentGUI:
         # Iniciar la búsqueda para mover a Piggy
         self.step_price = 1 # Precio de un paso
         self.animate_piggy_path()
-        
+
+    def show_alert(self, message):
+        show_alert(message, self.root) 
 
 #GUI Elements
 GameEnvironmentGUI.create_grid = create_grid
@@ -78,6 +82,6 @@ def main():
     root = tk.Tk()
     game = GameEnvironmentGUI(root)
     root.mainloop()
-    
+
 if __name__ == "__main__":
     main()

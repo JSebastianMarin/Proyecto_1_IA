@@ -1,4 +1,5 @@
 import random
+from utils import show_alert
 
 def animate_piggy_path(self):
     """Anima el movimiento de Piggy hacia Kermit recalculando el camino en cada paso."""
@@ -38,6 +39,7 @@ def animate_piggy_path(self):
             self.found = True
             self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].config(image=self.piggy_found_kermit)
             self.grid_labels[self.piggy_pos[0]][self.piggy_pos[1]].image = self.piggy_found_kermit
+            self.show_alert("¡Piggy ha encontrado a Kermit!")
             return
 
 
@@ -82,12 +84,14 @@ def animate_kermit_path(self, path):
         if self.current_kermit_pos == self.elmo_pos:
             self.grid_labels[current_pos[0]][current_pos[1]].config(image=self.kermit_found_elmo)
             self.grid_labels[current_pos[0]][current_pos[1]].image = self.kermit_found_elmo
+            self.show_alert("¡Kermit ha encontrado a Elmo!")
             return
         
         if tuple(self.current_kermit_pos) == self.piggy_pos:
             self.grid_labels[current_pos[0]][current_pos[1]].config(image=self.piggy_found_kermit)
             self.grid_labels[current_pos[0]][current_pos[1]].image = self.piggy_found_kermit
             self.found = True
+            self.show_alert("¡Piggy ha encontrado a Kermit!")
             return   
 
         # Llamar a la siguiente animación después de un breve retraso
