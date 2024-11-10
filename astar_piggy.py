@@ -16,6 +16,12 @@ def a_star(self, start, goal):
     g_score = {start: 0}
     f_score = {start: heuristic(start, goal)}
 
+    if start == tuple(self.cookie_pos):
+        self.eaten_cookie = True 
+
+    if self.eaten_cookie:
+        self.step_price = 0.5
+
     while open_set:
         _, current = heapq.heappop(open_set)
 
@@ -30,7 +36,7 @@ def a_star(self, start, goal):
             neighbor = tuple(neighbor)
             
             if 0 <= neighbor[0] < 4 and 0 <= neighbor[1] < 5 and list(neighbor) not in self.wall_positions:
-                tentative_g_score = g_score[current] + 1
+                tentative_g_score = g_score[current] + self.step_price
 
                 if neighbor not in g_score or tentative_g_score < g_score[neighbor]:
                     came_from[neighbor] = current

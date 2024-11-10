@@ -23,16 +23,19 @@ class GameEnvironmentGUI:
         # Crear la cuadrícula después de cargar las imágenes
         self.create_grid(4, 5)
 
-        # Crear varibale global para definir cuando kermit es encontrado por piggyc
+        # Crear varibale global para definir cuando kermit es encontrado por piggy
         self.found = False
 
         self.power = 5
+
+        self.eaten_cookie = False
 
         # Posición inicial de Kermit, Elmo y Piggy
         self.kermit_pos = [3, 2]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
         self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
         self.piggy_pos = [0, 4]    # Posición inicial de Piggy
+        self.cookie_pos = [1, 3]
 
         self.current_kermit_pos = self.kermit_pos
 
@@ -43,7 +46,8 @@ class GameEnvironmentGUI:
         self.depth_limit = 7  # Límite de profundidad
         self.dls_move_kermit()
 
-        # Iniciar la búsqueda para mover a Piggy 
+        # Iniciar la búsqueda para mover a Piggy
+        self.step_price = 1 # Precio de un paso
         self.animate_piggy_path()
         
 

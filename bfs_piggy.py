@@ -40,6 +40,5 @@ def reconstruct_path_bfs(self, parent, end_pos):
     while current is not None:
         path.append(current)
         current = parent.get(tuple(current))
-    #print("Path: ", path.reverse())
     path.reverse()  # Invertir el camino para que vaya desde el inicio hasta el final
     return path

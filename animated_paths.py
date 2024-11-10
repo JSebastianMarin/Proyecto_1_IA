@@ -4,8 +4,6 @@ def animate_piggy_path(self):
     """Anima el movimiento de Piggy hacia Kermit recalculando el camino en cada paso."""
     def move_step():
 
-        print("Paso")
-
         if self.power <= 4:
             # Buscar el nuevo camino hacia Kermit con A*
             path = self.a_star(self.piggy_pos, self.current_kermit_pos)
@@ -17,7 +15,6 @@ def animate_piggy_path(self):
             path = self.bfs_move_piggy(self.piggy_pos, self.current_kermit_pos)
             self.power = random.randint(1, 10)
             piggy_img = self.piggy
-            print("Powers: ", self.power)
             if not path:
                 return  # Si no hay camino, detener la animación
 
