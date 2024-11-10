@@ -1,5 +1,4 @@
 import random
-from utils import show_alert
 
 def animate_piggy_path(self):
     """Anima el movimiento de Piggy hacia Kermit recalculando el camino en cada paso."""

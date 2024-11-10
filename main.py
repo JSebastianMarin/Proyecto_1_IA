@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
 
 from gui_elements import create_grid, load_images, resize_image, add_images
 from dls_kermit import dls_move_kermit, dls, try_move
@@ -36,7 +35,7 @@ class GameEnvironmentGUI:
         self.moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
         # Posición inicial de Kermit, Elmo y Piggy
-        self.kermit_pos = [3, 3]  # Posición inicial de Kermit
+        self.kermit_pos = [2, 3]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
         self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
         self.piggy_pos = [0, 4]    # Posición inicial de Piggy

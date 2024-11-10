@@ -1,8 +1,3 @@
-import tkinter as tk
-from PIL import Image, ImageTk
-from collections import deque
-from utils import show_alert
-
 def dls_move_kermit(self):
     """Inicia la búsqueda limitada por profundidad (DLS) para mover a Kermit."""
     # Variables para la búsqueda

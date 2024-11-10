@@ -1,7 +1,5 @@
 import heapq
 
-from utils import show_alert
-
 def a_star(self, start, goal):
 
     """Realiza la búsqueda A* desde start hasta goal."""

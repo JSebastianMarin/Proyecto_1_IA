@@ -1,7 +1,5 @@
 from collections import deque
 
-from utils import show_alert
-
 def bfs_move_piggy(self, start, goal):
     
     start = tuple(start)
