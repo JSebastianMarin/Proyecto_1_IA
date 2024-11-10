@@ -1,5 +1,7 @@
 import heapq
 
+from utils import show_alert
+
 def a_star(self, start, goal):
 
     """Realiza la búsqueda A* desde start hasta goal."""
@@ -41,7 +43,7 @@ def a_star(self, start, goal):
                     f_score[neighbor] = tentative_g_score + heuristic(neighbor, goal)
                     heapq.heappush(open_set, (f_score[neighbor], neighbor))
 
-    return None  # Si no se encuentra un camino
+    return self.show_alert("¡Piggy no ha encontrado un camino hacia Kermit!") # Si no se encuentra un camino
 
 def reconstruct_path(self, came_from, current):
     """Reconstruye el camino desde el diccionario came_from."""

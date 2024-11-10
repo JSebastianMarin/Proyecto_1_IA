@@ -1,6 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from collections import deque
+from utils import show_alert
 
 def dls_move_kermit(self):
     """Inicia la búsqueda limitada por profundidad (DLS) para mover a Kermit."""
@@ -12,6 +13,7 @@ def dls_move_kermit(self):
     if self.dls(self.kermit_pos, visited, path, 0, self.depth_limit):
         # Si se encuentra un camino, mover a Kermit
         self.animate_kermit_path(path)
+    else: self.show_alert("¡Kermit no ha encontrado un camino hacia Elmo!")
 
 
 def dls(self, pos, visited, path, depth, limit):

@@ -1,5 +1,7 @@
 from collections import deque
 
+from utils import show_alert
+
 def bfs_move_piggy(self, start, goal):
     
     start = tuple(start)
@@ -29,6 +31,7 @@ def bfs_move_piggy(self, start, goal):
                 if new_pos not in self.wall_positions and tuple(new_pos) not in visited:
                     queue.append(new_pos)
                     parent[tuple(new_pos)] = current_pos
+    return self.show_alert("¡Piggy no ha encontrado un camino hacia Kermit!")
 
 def reconstruct_path_bfs(self, parent, end_pos):
     """Reconstruye el camino desde el final hasta el inicio usando el diccionario parent."""
