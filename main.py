@@ -29,8 +29,6 @@ class GameEnvironmentGUI:
 
         self.power = 5
 
-        self.eaten_cookie = False
-        
         # Coordenadas de movimiento (izquierda, abajo, arriba, derecha)
         self.moves = [(0, -1), (-1, 0), (1, 0), (0, 1)]
 
@@ -40,7 +38,6 @@ class GameEnvironmentGUI:
         self.wall_positions = [[3, 1], [2, 1], [2, 2], [1,2]]  # Posiciones de varios muros
         self.piggy_pos = [2, 3]    # Posición inicial de Piggy
         self.cookie_pos = [1, 1]
-
 
         self.current_kermit_pos = self.kermit_pos
 

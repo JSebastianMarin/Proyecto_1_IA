@@ -4,7 +4,7 @@ def animate_piggy_path(self):
     """Anima el movimiento de Piggy hacia Kermit recalculando el camino en cada paso."""
     def move_step():
 
-        if self.power <= 12:
+        if self.power <= 4:
             # Buscar el nuevo camino hacia Kermit con A*
             path = self.a_star(self.piggy_pos, self.current_kermit_pos)
             piggy_img = self.piggy_rage
