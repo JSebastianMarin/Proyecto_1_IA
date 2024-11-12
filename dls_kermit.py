@@ -31,7 +31,7 @@ def dls(self, pos, visited, path, depth, limit):
 
     # Intentar movimientos en el nuevo orden
     for i in range(4):
-        if i == 0:  # Intentar hacia arriba primero
+        if i == 0:  # Intentar hacia la izquierda primero
             new_pos = [pos[0] + self.moves[0][0], pos[1] + self.moves[0][1]]
             if self.try_move(new_pos, visited, path, depth, limit):
                 return True
@@ -39,7 +39,7 @@ def dls(self, pos, visited, path, depth, limit):
             new_pos = [pos[0] + self.moves[1][0], pos[1] + self.moves[1][1]]
             if self.try_move(new_pos, visited, path, depth, limit):
                 return True
-        elif i == 2:  # Intentar hacia la izquierda
+        elif i == 2:  # Intentar hacia la arriba
             new_pos = [pos[0] + self.moves[2][0], pos[1] + self.moves[2][1]]
             if self.try_move(new_pos, visited, path, depth, limit):
                 return True
