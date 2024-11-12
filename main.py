@@ -31,15 +31,16 @@ class GameEnvironmentGUI:
 
         self.eaten_cookie = False
         
-        # Coordenadas de movimiento (arriba, abajo, izquierda, derecha)
-        self.moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        # Coordenadas de movimiento (izquierda, abajo, arriba, derecha)
+        self.moves = [(0, -1), (-1, 0), (1, 0), (0, 1)]
 
         # Posición inicial de Kermit, Elmo y Piggy
-        self.kermit_pos = [2, 3]  # Posición inicial de Kermit
+        self.kermit_pos = [0, 3]  # Posición inicial de Kermit
         self.elmo_pos = [2, 0]     # Posición de Elmo
-        self.wall_positions = [[3, 1], [2, 1], [0, 2], [0, 3]]  # Posiciones de varios muros
-        self.piggy_pos = [0, 4]    # Posición inicial de Piggy
-        self.cookie_pos = [1, 2]
+        self.wall_positions = [[3, 1], [2, 1], [2, 2], [1,2]]  # Posiciones de varios muros
+        self.piggy_pos = [2, 3]    # Posición inicial de Piggy
+        self.cookie_pos = [1, 1]
+
 
         self.current_kermit_pos = self.kermit_pos
 
@@ -55,7 +56,7 @@ class GameEnvironmentGUI:
         self.animate_piggy_path()
 
     def show_alert(self, message):
-        show_alert(message, self.root) 
+        show_alert(message, self.root)
 
 #GUI Elements
 GameEnvironmentGUI.create_grid = create_grid
@@ -79,6 +80,7 @@ GameEnvironmentGUI.reconstruct_path = reconstruct_path
 #Animated Paths
 GameEnvironmentGUI.animate_piggy_path = animate_piggy_path
 GameEnvironmentGUI.animate_kermit_path = animate_kermit_path
+
 
 def main():
     root = tk.Tk()

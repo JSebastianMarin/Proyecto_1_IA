@@ -1,11 +1,13 @@
 import heapq
+from utils import viene_de
 
 def a_star(self, start, goal):
 
     """Realiza la búsqueda A* desde start hasta goal."""
     def heuristic(a, b):
         """Calcula la distancia Manhattan entre dos puntos a y b."""
-        return abs(a[0] - b[0]) + abs(a[1] - b[1])
+        return (abs(a[0] - b[0]) + abs(a[1] - b[1]))/2
+
 
     start = tuple(start)
     goal = tuple(goal)
@@ -16,26 +18,24 @@ def a_star(self, start, goal):
     g_score = {start: 0}
     f_score = {start: heuristic(start, goal)}
 
-    if start == tuple(self.cookie_pos):
-        self.eaten_cookie = True 
-
-    if self.eaten_cookie:
-        self.step_price = 0.5
-
     while open_set:
         _, current = heapq.heappop(open_set)
-
+        
         if current == goal:
             return self.reconstruct_path(came_from, current)
 
         for dx, dy in self.moves:
+            step_price = 1
             neighbor = (current[0] + dx, current[1] + dy)
             neighbor = tuple(neighbor)
-            
-            if 0 <= neighbor[0] < 4 and 0 <= neighbor[1] < 5 and list(neighbor) not in self.wall_positions:
-                tentative_g_score = g_score[current] + self.step_price
 
-                if neighbor not in g_score or tentative_g_score < g_score[neighbor]:
+            if viene_de(came_from, tuple(self.cookie_pos), current) or tuple(self.cookie_pos) == current:
+                step_price = 0.5
+
+            if 0 <= neighbor[0] < 4 and 0 <= neighbor[1] < 5 and list(neighbor) not in self.wall_positions:
+                tentative_g_score = g_score[current] + step_price
+
+                if neighbor not in g_score or tentative_g_score <= g_score[neighbor]:
                     came_from[neighbor] = current
                     g_score[neighbor] = tentative_g_score
                     f_score[neighbor] = tentative_g_score + heuristic(neighbor, goal)
@@ -51,3 +51,4 @@ def reconstruct_path(self, came_from, current):
         path.append(current)
     path.reverse()
     return path
+
